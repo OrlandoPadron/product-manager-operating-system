@@ -112,3 +112,34 @@ Each markdown file in the OS has a single, clear purpose. When a file grows too 
 ## 14. The `_template/` folder is for sharing, not editing
 
 `_template/` contains placeholder versions of every gitignored file. It's used by `/setup` on first run to populate the live folders. **Don't edit `_template/` to change the OS** — edit live folders. `_template/` only changes when the OS itself is updated.
+
+## 15. Custom templates override defaults — file presence is the configuration
+
+Skills with structural output check `templates/` for a user-provided file before using their inline default. The override pattern:
+
+- **Single-variant skills** check `templates/<artifact>.md` (e.g., `templates/teams-post.md`, `templates/roadmap.md`)
+- **Multi-variant skills** check `templates/<artifact>-<variant>.md` (e.g., `templates/changelog-customer.md`, `templates/announcement-email.md`)
+
+If the file exists, the skill maps generated content to its structure. If missing, the skill uses its inline default. Drop the file → override active. Delete it → defaults restored. **Zero settings, no configuration syntax — file presence *is* the configuration.**
+
+What templates control vs. don't:
+- Templates control **structure only** — section ordering, frontmatter shape, headings, what fields exist
+- **Voice and tone always come from `identity/voice-profile.md` and `identity/examples/<type>/`**, never from the template
+- Skills must respect the template's structure even if it differs from their inline default
+
+New skills built via `/new-action` should follow this pattern automatically: check `templates/<name>[-<variant>].md`, fall back to inline default.
+
+### Skills currently supporting custom templates
+
+| Skill | Recognized template(s) |
+|---|---|
+| `/write-prd` | `templates/prd.md` |
+| `/write-jira-tickets` | `templates/jira-ticket.md` |
+| `/generate-changelog` | `templates/changelog-{customer,internal,developer}.md` |
+| `/draft-announcement` | `templates/announcement-{email,in-app,blog,social}.md` |
+| `/plan-roadmap` | `templates/roadmap.md` |
+| `/new-stakeholder` | `templates/stakeholder.md` |
+| `/new-action` | `templates/skill-scaffold.md` |
+| `/new-workflow` *(slice 2)* | `templates/workflow-definition.md` |
+| `/draft-release-review` *(slice 2)* | `templates/release-review-slides.md` |
+| `/draft-teams-post` *(slice 2)* | `templates/teams-post.md` |

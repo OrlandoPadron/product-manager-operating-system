@@ -37,9 +37,14 @@ If they want to proceed without setup, that's fine — skills should still work 
 | Add a new product | `/new-product` |
 | Start a new release | `/new-release <product> <version>` |
 | Add a key stakeholder | `/new-stakeholder` |
+| Link an existing stakeholder | `/link-stakeholder <name>` |
 | Capture a learning | `/add-knowledge` |
-| Draft a PRD | `/write-prd` |
-| Teach the OS a new recurring action | `/new-action` |
+| Draft a PRD | `/write-prd <product> <version>` |
+| Break a PRD into JIRA tickets | `/write-jira-tickets <product> <version>` |
+| Generate a release changelog | `/generate-changelog <product> <version>` |
+| Draft a release announcement | `/draft-announcement <product> <version>` |
+| Plan a product roadmap | `/plan-roadmap <product>` |
+| Teach the OS a new recurring action | `/new-action <name>` |
 
 ## Conventions every skill follows
 

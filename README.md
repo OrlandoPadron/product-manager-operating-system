@@ -54,8 +54,14 @@ If you're returning, just invoke the skill you need. `CLAUDE.md` keeps a one-lin
 
 ### Generation
 - **`/write-prd`** — draft a PRD for a release, in your voice
+- **`/write-jira-tickets`** — break a PRD into JIRA tickets, one file per ticket
+- **`/generate-changelog`** — synthesize the release changelog from PRD + tickets (audience-aware: customer / internal / technical)
+- **`/draft-announcement`** — draft the customer-facing announcement (channel-aware: email / in-app / blog / social)
 
-More skills will land in the second slice (`/write-jira-tickets`, `/generate-changelog`, `/draft-teams-post`, `/draft-announcement`, `/plan-roadmap`, `/draft-release-review`, `/new-template`, `/new-workflow`).
+### Planning
+- **`/plan-roadmap`** — coached roadmap planning, anchored to OKRs and KPIs
+
+More skills will land in the second slice (`/draft-teams-post`, `/draft-release-review`, `/new-template`, `/new-workflow`).
 
 ## Conventions
 
