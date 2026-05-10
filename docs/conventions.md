@@ -1,0 +1,114 @@
+# Conventions
+
+Patterns every skill in this OS follows. If you understand these, you understand any skill.
+
+## 1. Read the voice layer first
+
+Every skill — without exception — loads:
+- `identity/voice-profile.md`
+- `config.md` (for language, formality, defaults)
+- The relevant `identity/examples/<type>/` folder
+
+Skills produce voice-faithful output by default. If `voice-profile.md` is empty, they hint: *"Run `/setup identity` to make output sound more like you."*
+
+## 2. Coached creation, not blank scaffolds
+
+`/new-*` skills don't produce empty stubs. They:
+
+1. **Propose** — ask the user enough questions to draft something meaningful
+2. **Critique** — show the draft and explicitly invite changes
+3. **Refine** — incorporate feedback, regenerate
+4. **Save** — write to canonical location with explicit confirmation
+
+The user never sees a blank `about.md` waiting to be filled. They see a populated draft they can edit, accept, or replace.
+
+## 3. Drafts go to `workspace/` first
+
+Content-generating skills (`/write-prd`, `/draft-teams-post`, etc.) save drafts to `workspace/` (or `workspace/drafts/`) and ask the user to confirm before committing to canonical locations like `products/<x>/releases/<v>/prd.md`.
+
+This means:
+- Nothing in `products/` is ever "in progress" — it's always finalized
+- The user can iterate freely without polluting the canonical structure
+- Discarded drafts can be deleted from `workspace/` without consequence
+
+## 4. Forward links only
+
+When a stakeholder is connected to a product or release, the link lives in the **product's or release's** frontmatter:
+
+```yaml
+# products/<x>/about.md
+---
+stakeholders:
+  - name: jane-smith
+    role: reviewer
+---
+```
+
+The stakeholder file itself stays a clean profile. This avoids drift (one source of truth per relationship) and keeps profiles reusable across multiple products.
+
+## 5. Ask, don't fabricate
+
+When a skill needs context it can't find — no KPI defined, no stakeholder profile for a named person, scope unclear — it **asks the user** rather than making something up.
+
+Bad: *"Increased conversion by 15%."* (where did that number come from?)
+Good: *"I don't see a conversion metric in the product's KPIs. What's the relevant number?"*
+
+## 6. End with the canonical path
+
+When a skill saves something, it tells the user exactly where:
+
+> ✓ Saved PRD to `products/checkout-v2/releases/v1.2.0/prd.md`
+
+No silent writes. No ambiguity about where things live.
+
+## 7. Suggest the next action
+
+When a skill finishes and there's an obvious next step in the workflow, the response includes a one-liner:
+
+> Next in this workflow: `/write-jira-tickets checkout-v2 v1.2.0`
+
+The OS reads `workflows/<active>.md` to know what's typical. The user can follow the suggestion or do something different.
+
+## 8. Append to CHANGELOG
+
+When a skill saves a meaningful artifact (PRD, release scaffold, stakeholder profile, knowledge entry, new skill), it appends a one-line entry to `CHANGELOG.md`:
+
+```
+## 2026-05-10
+- `products/checkout-v2/releases/v1.2.0/prd.md` — Initial PRD draft *(via /write-prd)*
+```
+
+Manual edits to context files (e.g., updating `okrs.md` by hand) don't auto-log. Git is the source of truth for those.
+
+## 9. Detect first-run state and warn
+
+If `config.md` still has `<run /setup to fill in>` placeholders, skills should prompt:
+
+> *"Looks like you haven't run `/setup` yet. Skills will work but the output won't sound like you and won't have your company context. Want to run `/setup` now?"*
+
+If the user declines, proceed but flag what's missing.
+
+## 10. Idempotent skills
+
+Skills that modify state (like `/setup`) should be safe to re-run:
+- Detect existing values
+- Ask before overwriting
+- Allow skipping modules that are already done
+
+This means the user never has to remember "have I done this yet?" — just re-run.
+
+## 11. Read workflows for navigation, not enforcement
+
+`workflows/<name>.md` describes the user's typical sequence. Skills *consult* it to suggest next actions, but never *force* a sequence. The user might run skills out of order, skip steps, or invent new ones — the OS adapts.
+
+## 12. Frontmatter is for machine-readable fields only
+
+If a field is for skills to parse (stakeholder lists, status tags, dates), put it in YAML frontmatter. If it's for humans to read (level of formality, narrative context), put it in the first line of prose. Don't put narrative in frontmatter or status flags in prose.
+
+## 13. Small files, focused purpose
+
+Each markdown file in the OS has a single, clear purpose. When a file grows too large or covers multiple unrelated topics, split it. `/add-knowledge` will offer to split `knowledge.md` if it grows past ~100 entries.
+
+## 14. The `_template/` folder is for sharing, not editing
+
+`_template/` contains placeholder versions of every gitignored file. It's used by `/setup` on first run to populate the live folders. **Don't edit `_template/` to change the OS** — edit live folders. `_template/` only changes when the OS itself is updated.

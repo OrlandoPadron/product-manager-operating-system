@@ -1,0 +1,62 @@
+# Product Operating System — gitignore strategy
+#
+# Everything that contains your real, private, company-specific content is
+# ignored by default. The `_template/` folder ships parallel placeholder
+# versions for sharing this OS as a template.
+#
+# To share the OS with someone else, push to a public/template repo with
+# this .gitignore in place. Your private content stays local.
+
+# === Private content (your real stuff) ===
+# Company-specific context — never share by accident
+company/about.md
+company/okrs.md
+company/kpis.md
+company/teams.md
+company/tools.md
+company/procedures.md
+company/glossary.md
+company/stakeholders/*.md
+!company/stakeholders/README.md
+
+# Product-specific work
+products/*/
+!products/README.md
+!products/.gitkeep
+
+# Private examples (unredacted originals)
+identity/examples/private/*
+!identity/examples/private/.gitkeep
+
+# Filled-in identity files (you may want to keep these private until
+# sanitized for sharing — comment these out if you're using this repo
+# only for yourself and want them tracked)
+# identity/about-me.md
+# identity/voice-profile.md
+# identity/values.md
+
+# Drafts and works-in-progress
+workspace/*
+!workspace/README.md
+!workspace/.gitkeep
+
+# Cross-cutting learnings (often contain confidential context)
+knowledge.md
+
+# Configuration with personal preferences
+# (uncomment if you want config to stay private)
+# config.md
+
+# === Standard ignores ===
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Editor folders
+.vscode/
+.idea/
+
+# OS files
+desktop.ini
