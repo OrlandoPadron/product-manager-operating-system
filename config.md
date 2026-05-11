@@ -2,9 +2,9 @@
 language:
   system: en
   output: en
-voice_formality: <run /setup to fill in>
-time_zone: <run /setup to fill in>
-default_product: <run /setup to fill in once at least one product exists>
+voice_formality: professional-casual
+time_zone: Europe/Madrid
+default_product: mentoring
 ---
 
 # Configuration

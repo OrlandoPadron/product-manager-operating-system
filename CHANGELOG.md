@@ -9,6 +9,28 @@ Format:
 - `<file>` — <one-line summary> *(via /skill-name)*
 ```
 
+## 2026-05-11
+- `company/about.md` — Speexx company overview, solutions, and strategic focus *(via /setup)*
+- `company/teams.md` — org structure, reporting line, cross-functional partners *(via /setup)*
+- `company/tools.md` — toolstack (Jira, Confluence, Teams, Figma, MS Office) *(via /setup)*
+- `company/okrs.md` — OKR structure scaffolded (values to fill in) *(via /setup)*
+- `company/kpis.md` — KPI structure scaffolded with Mentoring KPIs as reference *(via /setup)*
+- `company/procedures.md` — release process, scope change and comms conventions *(via /setup)*
+- `company/glossary.md` — full Speexx internal glossary (products, acronyms, domain concepts) *(via /setup)*
+- `products/mentoring/about.md` — Speexx Mentoring product brief, vision, audience, KPIs *(via /setup)*
+- `products/mentoring/roadmap.md` — Mentoring roadmap scaffold *(via /setup)*
+- `products/cms/about.md` — Speexx CMS / Content Tool product brief, Dacapo deprecation context *(via /setup)*
+- `products/cms/roadmap.md` — CMS roadmap scaffold with known deferred backlog *(via /setup)*
+- `config.md` — default_product set to mentoring *(via /setup)*
+
+## 2026-05-11
+- `identity/about-me.md` — filled in role, responsibilities, focus areas, working style, background *(via /setup)*
+- `identity/values.md` — filled in professional values, principles, hard lines, flex areas *(via /setup)*
+- `identity/voice-profile.md` — generated voice profile from writing samples *(via /setup)*
+
+## 2026-05-10
+- `config.md` — set output language (en), voice formality (professional-casual), time zone (Europe/Madrid) *(via /setup)*
+
 Most recent entries on top.
 
 ---
