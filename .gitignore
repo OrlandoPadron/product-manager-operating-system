@@ -39,6 +39,9 @@ workspace/*
 # Cross-cutting learnings (often contain confidential context)
 knowledge.md
 
+# Auto-generated OS changelog (private, local only)
+CHANGELOG.md
+
 # Configuration with personal preferences
 # (uncomment if you want config to stay private)
 # config.md
