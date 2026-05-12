@@ -24,16 +24,12 @@ products/*/
 !products/README.md
 !products/.gitkeep
 
-# Private examples (unredacted originals)
-identity/examples/private/*
-!identity/examples/private/.gitkeep
-
-# Filled-in identity files (you may want to keep these private until
-# sanitized for sharing — comment these out if you're using this repo
-# only for yourself and want them tracked)
-# identity/about-me.md
-# identity/voice-profile.md
-# identity/values.md
+# Personal identity content — all of it stays private
+identity/*.md
+!identity/README.md
+identity/examples/**
+!identity/examples/README.md
+!identity/examples/**/.gitkeep
 
 # Drafts and works-in-progress
 workspace/*
