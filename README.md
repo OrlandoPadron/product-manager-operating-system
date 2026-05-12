@@ -57,6 +57,7 @@ If you're returning, just invoke the skill you need. `CLAUDE.md` keeps a one-lin
 - **`/write-jira-tickets`** — break a PRD into JIRA tickets, one file per ticket
 - **`/generate-changelog`** — synthesize the release changelog from PRD + tickets (audience-aware: customer / internal / technical)
 - **`/draft-announcement`** — draft the customer-facing announcement (channel-aware: email / in-app / blog / social)
+- **`/generate-release-review`** — generate a PPTX release review deck from tickets + PRD, coached and styled from your own template
 
 ### Planning
 - **`/plan-roadmap`** — coached roadmap planning, anchored to OKRs and KPIs

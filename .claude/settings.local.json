@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(python3 --version 2>&1)",
+      "PowerShell(py --version 2>&1)",
+      "PowerShell(Get-Content \"$env:TEMP\\\\prd_extract.txt\" -TotalCount 5 -Encoding UTF8 2>&1; Write-Host \"---\"; \\(Get-Item \"$env:TEMP\\\\prd_extract.txt\" -ErrorAction SilentlyContinue\\).Length)",
+      "PowerShell(& \"C:\\\\Program Files\\\\Adobe\\\\Acrobat DC\\\\Acrobat\\\\AcroTextExtractor.exe\" /? 2>&1)",
+      "PowerShell($pdfPath = \"c:\\\\Users\\\\OrlandoPadr�n\\\\OneDrive - digital publishing AG\\\\Documents\\\\Speexx\\\\Code projects\\\\product-manager-operating-system\\\\products\\\\mentoring\\\\releases\\\\43.26.0-mentoring-in-speexx-manager\\\\prd.pdf\")",
+      "PowerShell($outPath = \"c:\\\\Users\\\\OrlandoPadr�n\\\\OneDrive - digital publishing AG\\\\Documents\\\\Speexx\\\\Code projects\\\\product-manager-operating-system\\\\products\\\\mentoring\\\\releases\\\\43.26.0-mentoring-in-speexx-manager\\\\prd.txt\")",
+      "PowerShell(winget install Python.Python.3.11 --silent --accept-package-agreements --accept-source-agreements 2>&1)",
+      "Bash(grep -n \"^## \\\\[SP-\\\\|^### \\\\|^\\\\*\\\\*Status\\\\|^---$\" \"c:/Users/OrlandoPadrón/OneDrive - digital publishing AG/Documents/Speexx/Code projects/product-manager-operating-system/products/mentoring/releases/43.26.0-mentoring-in-speexx-manager/tickets/jira-tickets.md\")",
+      "Bash(git -C \"c:/Users/OrlandoPadrón/OneDrive - digital publishing AG/Documents/Speexx/Code projects/product-manager-operating-system\" ls-files identity/)",
+      "Bash(git -C \"c:/Users/OrlandoPadrón/OneDrive - digital publishing AG/Documents/Speexx/Code projects/product-manager-operating-system\" rm --cached identity/about-me.md identity/values.md identity/voice-profile.md)"
+    ]
+  }
+}

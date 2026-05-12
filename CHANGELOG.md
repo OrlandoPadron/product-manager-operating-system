@@ -9,6 +9,15 @@ Format:
 - `<file>` — <one-line summary> *(via /skill-name)*
 ```
 
+## 2026-05-12
+- `products/mentoring/releases/43.26.0-mentoring-in-speexx-manager/prd.md` — Converted from PDF (33 pages), full PRD with requirements, KPIs, roles & permissions *(via /new-release)*
+- `products/mentoring/releases/43.26.0-mentoring-in-speexx-manager/` — Created release scaffold *(via /new-release)*
+- `products/mentoring/releases/43.26.0-mentoring-in-speexx-manager/changelog.md` — Populated from release changelog *(via /new-release)*
+- `products/mentoring/releases/43.26.0-mentoring-in-speexx-manager/announcement.md` — Populated from identity/examples *(via /new-release)*
+- `products/mentoring/releases/43.26.0-mentoring-in-speexx-manager/tickets/jira-tickets.md` — Converted 158 tickets from .doc *(via /new-release)*
+- `.claude/skills/generate-release-review/SKILL.md` — Created skill *(via /new-action)*
+- `README.md` — Added /generate-release-review to Generation skill index *(via /new-action)*
+
 ## 2026-05-11
 - `company/about.md` — Speexx company overview, solutions, and strategic focus *(via /setup)*
 - `company/teams.md` — org structure, reporting line, cross-functional partners *(via /setup)*
