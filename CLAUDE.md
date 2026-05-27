@@ -15,6 +15,7 @@ The OS has six layers. When the user invokes a skill, you should consider which 
 |---|---|---|
 | `identity/` | who the user is, voice profile, examples | always — every skill needs voice |
 | `company/` | where they work, OKRs, stakeholders, procedures | when output needs company context |
+| `company/brand/` | colors, typography, voice tokens, design-system cheat sheet | whenever producing a visual artifact (mockup, slide, Figma frame, announcement) — load `design-system-reference.md` if the folder exists |
 | `products/<x>/` | a specific product, its roadmap, its releases | when work is product-scoped |
 | `workflows/` | end-to-end processes the user follows | when navigating between steps |
 | `templates/` | scaffolds for generated artifacts | when producing structured output |
@@ -56,6 +57,7 @@ If they want to proceed without setup, that's fine — skills should still work 
 6. **End with the canonical path.** When a skill saves, it tells the user where: `Saved to <path>`.
 7. **Suggest the next action.** When relevant, end with a one-liner pointing at what's typically next.
 8. **Append to CHANGELOG.** When a skill saves a meaningful artifact, it appends a one-line entry to `CHANGELOG.md` with date, file path, and a brief summary.
+9. **Auto-load brand for visual artifacts.** If `company/brand/design-system-reference.md` exists, any skill producing a visual artifact (mockup, slide deck, Figma frame, announcement with layout, release review) must load it automatically — no prompt needed. The user can override with an explicit instruction; otherwise brand tokens apply by default.
 
 Full conventions in [docs/conventions.md](docs/conventions.md). Glossary in [docs/glossary.md](docs/glossary.md).
 

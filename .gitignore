@@ -17,6 +17,7 @@ company/tools.md
 company/procedures.md
 company/glossary.md
 company/stakeholders/*.md
+company/brand/*
 !company/stakeholders/README.md
 
 # Product-specific work

@@ -143,3 +143,37 @@ New skills built via `/new-action` should follow this pattern automatically: che
 | `/new-workflow` *(slice 2)* | `templates/workflow-definition.md` |
 | `/draft-release-review` *(slice 2)* | `templates/release-review-slides.md` |
 | `/draft-teams-post` *(slice 2)* | `templates/teams-post.md` |
+
+## 16. Auto-load brand for visual artifacts
+
+If `company/brand/design-system-reference.md` exists, any skill that produces a **visual artifact** must load it automatically before generating output. The user is not asked — brand is on by default.
+
+**What counts as a visual artifact:**
+- Slide decks and release reviews (`/generate-release-review`)
+- Figma frames, mockups, or any output routed through the Figma MCP
+- Announcements that include layout or design direction (`/draft-announcement`)
+- Any ad-hoc request for a prototype, wireframe, mockup, or visual spec
+
+**What to do with the brand files:**
+1. Load `company/brand/design-system-reference.md` as the quick-reference token set
+2. When generating copy, check `company/brand/voice-and-messaging.md` for brand-specific language
+3. When specifying colors or type, use the exact values from `company/brand/colors.md` and `company/brand/typography.md`
+4. Surface the applied brand tokens to the user: *"Using Speexx brand: #FF7900 orange, Roboto Light, near-black headings."*
+
+**Override:**
+If the user says *"ignore brand"*, *"use my own colors"*, or specifies explicit values, defer to them for that artifact only. Do not persist the override.
+
+**Detection:**
+```
+exists: company/brand/design-system-reference.md → brand is configured → auto-load
+missing → no brand layer → proceed without it, no warning needed
+```
+
+**Skills that follow this rule:**
+
+| Skill | What it uses from brand |
+|---|---|
+| `/generate-release-review` | Colors for section titles/highlights; typography for slide headings |
+| `/draft-announcement` | Brand voice from `voice-and-messaging.md`; color/font tokens for visual versions |
+| Figma MCP skills | Full palette + type scale + logo/layout rules |
+| Future `/create-mockup`, `/prototype` | Full design system reference |

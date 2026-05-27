@@ -19,7 +19,8 @@ Walks the user through configuring the OS interactively. Modular: each sub-modul
 /setup                       # Run all modules in order
 /setup language              # Set system + output language, formality, time zone
 /setup identity              # Voice interview, fill in about-me / values / voice-profile
-/setup company               # Fill in company/* files
+/setup company               # Fill in company/* files (includes brand sub-step)
+/setup brand                 # Configure or refresh company/brand/ — colors, typography, voice tokens
 /setup product [name]        # Delegate to /new-product to create the first/next product
 /setup workflow [name]       # Delegate to /new-workflow to define a workflow
 ```
@@ -95,8 +96,69 @@ For each file in `company/` (about, okrs, kpis, teams, tools, procedures, glossa
    - If (b): capture in plain language, set status as informal in the first line of `okrs.md`
    - If (c): write *"Not currently tracked."* and offer to capture *priorities* instead in `company/priorities.md`
 4. For `stakeholders/`: *"Want to add a stakeholder profile now? You can also do this later via `/new-stakeholder`."* If yes, delegate to `/new-stakeholder`.
+5. **Brand sub-step** — after the core company files, always run the brand module (see below).
 
 Write each file. Confirm each save.
+
+### `brand` module
+
+**Detection first.** Check whether `company/brand/design-system-reference.md` exists.
+
+#### If brand files already exist:
+
+> *"Brand guidelines found in `company/brand/` (colors, typography, voice). They'll be auto-loaded for any visual artifact. Want to update them?"*
+
+- **Yes → update**: ask which part to refresh (colors / typography / voice / all), then re-run the relevant collection steps below and overwrite the affected files.
+- **No → skip**: confirm they're active and move on.
+
+#### If brand files don't exist:
+
+> *"Want to add brand guidelines? If you do, I'll use them automatically whenever you create mockups, Figma frames, slide decks, or visual announcements — no need to specify colors or fonts each time. How do you want to set this up?"*
+
+Present three options:
+
+**Option A — Extract from a URL**
+> *"Paste your company website or brand portal URL and I'll extract colors, typography, and messaging from the live CSS and page copy."*
+- Fetch the URL(s) the user provides using WebFetch and raw HTTP (curl via Bash for CSS extraction)
+- Extract: primary color, neutral scale, accent colors, font families, type scale, tagline, mission, values, key copy
+- Generate all four brand files (see File structure below)
+- Show a summary of what was found: *"Found primary color #FF7900, Roboto Light headings, 'Bring out the best in your people' as brand promise. Anything wrong or missing?"*
+- Incorporate corrections, then confirm save.
+
+**Option B — Fill in manually**
+Walk the user through each dimension with targeted questions:
+
+1. *"What's your primary brand color? (hex or RGB)"* — ask for name too (e.g., "Speexx Orange")
+2. *"Any secondary/accent colors? List as many as you have with their hex codes."*
+3. *"What's the main font? Any secondary font?"*
+4. *"What's the brand's core tagline or positioning statement?"*
+5. *"What's the brand's mission or promise in one sentence?"*
+6. *"Does your brand have named values? List them."*
+7. *"Any color or font rules to remember? (e.g., 'headings are always Light weight', 'never use red')"*
+
+Generate all four brand files from the answers. Show a draft of `design-system-reference.md` for review before saving.
+
+**Option C — Skip for now**
+> *"No problem. Run `/setup brand` whenever you're ready. Until then, visual artifacts will be produced without brand constraints."*
+
+#### File structure created/updated by the brand module
+
+All four files live in `company/brand/`:
+
+| File | What it holds |
+|---|---|
+| `colors.md` | Full palette: primary, neutrals, secondaries, opacity scale, usage rules |
+| `typography.md` | Type scale (H1–H6, body, button), font family, weights, principles |
+| `voice-and-messaging.md` | Taglines, mission, brand values, product copy, CTA vocabulary, tone guide |
+| `design-system-reference.md` | Single-page cheat sheet combining all tokens — **this is what visual skills load** |
+
+After saving, confirm:
+> *"✓ Brand guidelines saved to `company/brand/`. They'll now be loaded automatically for any mockup, Figma frame, slide deck, or visual announcement you create."*
+
+Append to `CHANGELOG.md`:
+```
+- `company/brand/` — Brand guidelines configured (colors, typography, voice) *(via /setup brand)*
+```
 
 ### `product` module
 
@@ -110,13 +172,14 @@ Delegate to `/new-workflow` if it exists. If not yet built (this is the first sl
 
 ## Context to read
 - `config.md` (always)
-- Existing files in `identity/`, `company/`, `products/` (to detect filled vs. placeholder state)
+- Existing files in `identity/`, `company/`, `company/brand/`, `products/` (to detect filled vs. placeholder state)
 - `_template/` if files don't exist yet (to copy placeholders into live folders)
 
 ## Save behavior
 - Updates `config.md` frontmatter (language module)
 - Writes `identity/about-me.md`, `identity/values.md`, `identity/voice-profile.md` (identity module)
 - Writes files in `company/` (company module)
+- Writes `company/brand/colors.md`, `company/brand/typography.md`, `company/brand/voice-and-messaging.md`, `company/brand/design-system-reference.md` (brand module)
 - Calls `/new-product` to write `products/<name>/...` (product module)
 - Calls `/new-workflow` for workflow module (when available)
 - Appends to `CHANGELOG.md` after each module completes
