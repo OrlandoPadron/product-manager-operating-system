@@ -10,7 +10,7 @@ First-run instructions for the Product Operating System.
 
 ## Quick start
 
-Open the repo in Claude Code and run:
+Open the repo in Claude Code (console) and run:
 
 ```
 /setup
