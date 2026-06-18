@@ -4,7 +4,7 @@ language:
   output: en
 voice_formality: professional-casual
 time_zone: Europe/Madrid
-default_product: mentoring
+default_product: TBD
 ---
 
 # Configuration
